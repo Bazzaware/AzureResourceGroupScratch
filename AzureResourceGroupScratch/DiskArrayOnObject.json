@@ -61,9 +61,8 @@
       "value": "[variables('top-level-string-array')]",
       "type": "array"
     },
-    "exampleIntegerArray": {
-      "value": "[variables('top-level-integer-array')]",
-      "type": "array"
-    }
+    "padLeft(parameters('serverCountInit')",
+    2,
+    "'0')"
   }
 }
