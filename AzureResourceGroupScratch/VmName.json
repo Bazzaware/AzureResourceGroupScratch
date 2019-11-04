@@ -1,0 +1,43 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceName": {
+      "type": "string",
+      "defaultValue": "vm",
+      "metadata": {
+        "description": "Virtual machine name"
+      }
+    },
+    "serverCount": {
+      "defaultValue": 10,
+      "type": "int",
+      "metadata": {
+        "description": "Enter the number of virtual machines required"
+      }
+    },
+    "serverCountInit": {
+      "type": "int",
+      "defaultValue": 10,
+      "metadata": {
+        "description": "Enter the first number of virtual machines required"
+      }
+    }
+  },
+  "variables": {
+    "copy": [
+      {
+        "name": "vmArray",
+        "count": "[parameters('serverCountInit')]",
+        "input": "[concat(parameters('resourceName'),padleft(copyIndex('vmArray'),2,'0'))]"
+      }
+    ]
+  },
+  "resources": [],
+  "outputs": {
+    "vmArray": {
+      "value": "[string(variables('vmArray'))]",
+      "type": "string"
+    }
+  }
+}

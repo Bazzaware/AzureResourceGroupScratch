@@ -31,6 +31,8 @@
     <Content Include="Deploy-AzureResourceGroup.ps1" />
     <Content Include="LoadBalancedVirtualMachine.json" />
     <Content Include="LoadBalancedVirtualMachine.parameters.json" />
+    <None Include="VmName.json" />
+    <None Include="DiskArrayOnObject.json" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>
