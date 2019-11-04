@@ -3,20 +3,49 @@
   "contentVersion": "1.0.0.0",
   "parameters": {},
   "variables": {
-    "comment": "this works with property copy as well",
+    "staticVariable": "This is a static variable",
+    "disk-array-on-object": {
+      "copy": [
+        {
+          "name": "disks",
+          "count": 5,
+          "input": {
+            "name": "[concat('myDataDisk', copyIndex('disks', 1))]",
+            "diskSizeGB": "1",
+            "diskIndex": "[copyIndex('disks')]"
+          }
+        },
+        {
+          "name": "diskNames",
+          "count": 5,
+          "input": "[concat('myDataDisk', copyIndex('diskNames', 1))]"
+        }
+      ]
+    },
     "copy": [
       {
-        "name": "arrayTest",
+        "name": "vmName",
         "count": 5,
-        "input": "[concat('item', copyIndex('arrayTest', 1))]"
+        "input": {
+          "name": "[concat('vmName', copyIndex('vmName', 1))]"
+        }
       }
-    ]
+    ],
+    "comment": "this works with property copy as well",
   },
   "resources": [],
   "outputs": {
-    "foo": {
-      "type": "array",
-      "value": "[variables('arrayTest')]"
+    "static": {
+      "type": "string",
+      "value": "[variables('staticVariable')]"
+    },
+    "exampleObject": {
+      "value": "[variables('disk-array-on-object')]",
+      "type": "object"
+    },
+    "vmArray": {
+      "value": "[variables('vmName')]",
+      "type": "array"
     }
   }
 }
